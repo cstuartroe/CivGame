@@ -8,16 +8,19 @@ class Application(tk.Frame):
         self.create_widgets()
         
     def create_widgets(self):        
-        self.paintboard = tk.Canvas(self, width=800, height=640)
+        self.paintboard = tk.Canvas(self, width=800, height=480)
         self.paintboard.pack()
 ##        self.paintboard.create_rectangle(0,0,800,600,fill='black')
-        self.z = self.paintboard.create_rectangle(0,0,800,640,fill='#228800')
+        self.z = self.paintboard.create_rectangle(0,0,800,640,fill='#aaddbb')
         
         self.castle = tk.PhotoImage(file='castle.gif')
+        self.spruces = tk.PhotoImage(file='spruces.gif')
         for i in range(25):
-            for j in range(20):
-                if random.random() < .01:
+            for j in range(15):
+                if random.random() < .02:
                     self.paintboard.create_image(32*i,32*j,anchor='nw',image=self.castle)
+                elif random.random() < .3:
+                    self.paintboard.create_image(32*i,32*j,anchor='nw',image=self.spruces)
 
 ##        self.hi_there = tk.Button(self, text="Hello", command=self.move_rect)
 ##        self.hi_there.pack(side='bottom')
