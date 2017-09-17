@@ -29,9 +29,9 @@ class Application(tk.Frame):
                           font=('Georgia',12), bg=back)
         self.d.grid(row=1,column=1)
         
-        self.castle = tk.PhotoImage(file='castle.gif')
-        self.spruces = tk.PhotoImage(file='spruces.gif')
-        self.gravel = tk.PhotoImage(file='gravel.gif')
+        self.castle = tk.PhotoImage(file='images/castle.gif')
+        self.spruces = tk.PhotoImage(file='images/spruces.gif')
+        self.gravel = tk.PhotoImage(file='images/gravel.gif')
         
         for i in range(25):
             for j in range(15):
