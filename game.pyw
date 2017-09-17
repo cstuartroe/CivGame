@@ -1,5 +1,6 @@
 import tkinter as tk
 import random
+import time
 
 class Application(tk.Frame):
     def __init__(self, master=None):
@@ -31,6 +32,7 @@ class Application(tk.Frame):
     def move_rect(self):
         self.paintboard.coords(self.z,0,0,32,32)
 
+time.sleep(.1)
 root = tk.Tk()
 app = Application(master=root)
 app.master.title('Sample application')
