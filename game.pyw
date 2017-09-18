@@ -6,16 +6,28 @@ root = tk.Tk()
 root.resizable(False,False)
 
 back = '#eeeebb'
+
 blue_castle = tk.PhotoImage(file='images/blue_castle.gif')
 red_castle = tk.PhotoImage(file='images/red_castle.gif')
 green_castle = tk.PhotoImage(file='images/green_castle.gif')
+yellow_castle = tk.PhotoImage(file='images/yellow_castle.gif')
+orange_castle = tk.PhotoImage(file='images/orange_castle.gif')
+purple_castle = tk.PhotoImage(file='images/purple_castle.gif')
+navy_castle = tk.PhotoImage(file='images/navy_castle.gif')
+tricolor_castle = tk.PhotoImage(file='images/tricolor_castle.gif')
+symbol_castle = tk.PhotoImage(file='images/symbol_castle.gif')
+chalice_castle = tk.PhotoImage(file='images/chalice_castle.gif')
 surrendered_castle = tk.PhotoImage(file='images/surrendered_castle.gif')
+
 spruces = tk.PhotoImage(file='images/spruces.gif')
 oaks = tk.PhotoImage(file='images/oaks.gif')
 gravel = tk.PhotoImage(file='images/gravel.gif')
 overlays = {'blue castle':blue_castle,'red castle':red_castle,'green castle':green_castle,
-            'surrendered castle':surrendered_castle,'spruces':spruces,'oaks':oaks,
-            'none':None}
+            'yellow castle':yellow_castle,'orange castle':orange_castle,
+            'purple castle':purple_castle,'navy castle':navy_castle,
+            'tricolor castle':tricolor_castle,'symbol castle':symbol_castle,
+            'chalice castle':chalice_castle,'surrendered castle':surrendered_castle,
+            'spruces':spruces,'oaks':oaks,'none':None}
 
 def callback(event):
     event.widget.bordify()
@@ -27,12 +39,8 @@ class SquareLand(tk.Canvas):
         self.focused = False
         
         seed = random.random()
-        if seed < .005:
-            self.overlay = 'blue castle'
-        elif seed < .01:
-            self.overlay = 'red castle'
-        elif seed < .015:
-            self.overlay = 'green castle'
+        if seed < .02:
+            self.overlay = list(overlays)[int(seed/.002)]
         elif seed < .16:
             self.overlay = 'spruces'
         elif seed < .3:
@@ -73,9 +81,9 @@ class Application(tk.Frame):
         self.paintboard.pack(side='top')
 
         self.paintboard.squares = []
-        for i in range(15):
+        for i in range(20):
             row = []
-            for j in range(25):
+            for j in range(40):
                 sl = SquareLand(self.paintboard)
                 sl.grid(row = i, column = j)
                 row += [sl]
