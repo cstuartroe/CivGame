@@ -35,28 +35,28 @@ def toHexStr(n):
 
 class SquareLand(tk.Canvas):
     def __init__(self, master=None,humidity=0,temperature=0):
-        tk.Canvas.__init__(self, master, width=8, height=8, highlightthickness=0)
+        tk.Canvas.__init__(self, master, width=32, height=32, highlightthickness=0)
         self.bind("<Button-1>", self.callback)
         self.is_focused = False
         
-##        seed = random.random()
-##        if seed < .02:
-##            self.overlay = list(overlays)[int(seed/.002)]
-##        elif seed < .16:
-##            self.overlay = 'spruces'
-##        elif seed < .3:
-##            self.overlay = 'oaks'
-##        else:
+        seed = random.random()
+        if seed < .02:
+            self.overlay = list(overlays)[int(seed/.002)]
+        elif seed < .16:
+            self.overlay = 'spruces'
+        elif seed < .3:
+            self.overlay = 'oaks'
+        else:
+            self.overlay = 'none'
         self.humidity = random.randrange(100)
         self.temperature = random.randrange(100)
 ##        self.bg = '#aaddbb'
         self.bg = self.find_bg()
-        self.overlay = 'none'
         self.redraw()
 
     def redraw(self):
         try:
-            self.create_rectangle(0,0,8,8,fill=self.bg,outline='')
+            self.create_rectangle(0,0,32,32,fill=self.bg,outline='')
         except Exception:
             print(self.temperature,self.humidity)
         if self.is_focused:
@@ -100,16 +100,17 @@ class MapBoard(tk.Frame):
         tk.Frame.__init__(self, master, width=width, height=height)
 
         self.squares = ['']*40
-        for i in range(40):
-            t = threading.Thread(target=self.add_row, args=(i,))
-            t.start()
+        for i in range(20):
+##            t = threading.Thread(target=self.add_row, args=(i,))
+##            t.start()
+            self.add_row(i)
         self.focused = self.squares[0][0]
 
     def add_row(self,index):
         row = []
         for j in range(20):
             sl = SquareLand(self)
-            sl.grid(row = i, column = j)
+            sl.grid(row = index, column = j)
             row += [sl]
         self.squares[index] = row
         
